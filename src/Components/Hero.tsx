@@ -1,6 +1,6 @@
 'use client';
 import TradingViewWidget from "./TradingViewWidget"
-import React, { useEffect, useRef, useState, memo } from 'react';
+import React, { useEffect, useState} from 'react';
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 interface BitcoinData {
   inr: number;

@@ -1,7 +1,4 @@
 import { ArrowRight } from 'lucide-react';
-import Image from "next/image";
-
-// This would typically come from an API
 const bitcoinStats = {
     currentPrice: 16951.82,
     volume24h: 19.14,
