@@ -8,6 +8,18 @@ interface Coin {
   price_btc: number
 }
 
+interface TrendingCoinsResponse {
+  coins: Array<{
+    item: {
+      id: string
+      name: string
+      symbol: string
+      thumb: string
+      price_btc: number
+    }
+  }>
+}
+
 const url = 'https://api.coingecko.com/api/v3/search/trending'
 const options = {
   method: 'GET',
@@ -17,7 +29,7 @@ const options = {
   },
 }
 
-async function getTrendingCoins() {
+async function getTrendingCoins(): Promise<TrendingCoinsResponse> {
   const res = await fetch(url, options)
   if (!res.ok) {
     throw new Error('Failed to fetch trending coins')
@@ -27,7 +39,7 @@ async function getTrendingCoins() {
 
 export async function TrendingCoins() {
   const data = await getTrendingCoins()
-  const top3Coins = data.coins.slice(0, 3).map((coin: any) => ({
+  const top3Coins = data.coins.slice(0, 3).map((coin) => ({
     id: coin.item.id,
     name: coin.item.name,
     symbol: coin.item.symbol,

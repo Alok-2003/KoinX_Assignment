@@ -44,8 +44,8 @@ export default async function Detail() {
         <div className="space-y-6">
           <div className="space-y-2">
             <div className="flex justify-between text-sm text-gray-600">
-              <span>Today's Low</span>
-              <span>Today's High</span>
+              <span>Today&apos;s Low</span>
+              <span>Today&apos;s High</span>
             </div>
             <div className="relative">
               <div className="h-2 rounded-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
