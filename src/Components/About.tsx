@@ -1,5 +1,14 @@
 import { ArrowRight } from 'lucide-react';
-const bitcoinStats = {
+
+const bitcoinStats: {
+    currentPrice: number;
+    volume24h: number;
+    priceChange24h: number;
+    sevenDayHigh: number;
+    sevenDayLow: number;
+    circulatingSupply: number;
+    maxSupply: number;
+} = {
     currentPrice: 16951.82,
     volume24h: 19.14,
     priceChange24h: 0.36,
@@ -18,7 +27,7 @@ export default function About() {
                 <article className="space-y-4">
                     <h3 className="text-xl font-semibold">What is Bitcoin?</h3>
                     <p className="text-gray-600">
-                        Bitcoin's price today is US${bitcoinStats.currentPrice.toLocaleString()},
+                        Bitcoin&apos;s price today is US${bitcoinStats.currentPrice.toLocaleString()},
                         with a 24-hour trading volume of ${bitcoinStats.volume24h} B. BTC is
                         {bitcoinStats.priceChange24h > 0 ? ' +' : ' '}
                         {bitcoinStats.priceChange24h}% in the last 24 hours. It is currently
