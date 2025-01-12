@@ -1,19 +1,19 @@
-"use client"
-import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+"use client";
+import React from "react";
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, TooltipItem } from "chart.js";
 
 // Register necessary components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Token = () => {
   const data = {
-    labels: ['Crowdsale Investors', 'Foundation'],
+    labels: ["Crowdsale Investors", "Foundation"],
     datasets: [
       {
         data: [80, 20], // Corresponding percentages
-        backgroundColor: ['#3b82f6', '#f97316'], // Tailwind CSS colors for blue-500 and orange-500
-        hoverBackgroundColor: ['#60a5fa', '#fb923c'], // Slightly lighter shades for hover effect
+        backgroundColor: ["#3b82f6", "#f97316"], // Tailwind CSS colors for blue-500 and orange-500
+        hoverBackgroundColor: ["#60a5fa", "#fb923c"], // Slightly lighter shades for hover effect
       },
     ],
   };
@@ -22,18 +22,18 @@ const Token = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'right',
+        position: "right",
         labels: {
           usePointStyle: true, // Use circular dots instead of boxes
           boxWidth: 0, // Hide box width to ensure only dots appear
-          textAlign: 'center', // Align the dots centrally
-          color: 'transparent', // Hide the text label by making it transparent
+          textAlign: "center", // Align the dots centrally
+          color: "transparent", // Hide the text label by making it transparent
         },
       },
       tooltip: {
         callbacks: {
-          label: function (context) {
-            const label = context.label || '';
+          label: function (context: TooltipItem) {
+            const label = context.label || "";
             const value = context.raw || 0;
             return `${label}: ${value}%`;
           },

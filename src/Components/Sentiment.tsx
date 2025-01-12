@@ -3,9 +3,10 @@ import React, { useRef } from "react";
 import { ChevronRight, ChevronLeft, Info, Newspaper, TrendingUp } from "lucide-react";
 
 export default function Sentiment() {
-    const cardContainerRef = useRef(null);
+    const cardContainerRef = useRef<HTMLDivElement>(null)
 
-    const scrollCards = (direction) => {
+    // Specify 'direction' as 'left' or 'right'
+    const scrollCards = (direction: "left" | "right") => {
         if (cardContainerRef.current) {
             const scrollAmount = direction === "left" ? -300 : 300; // Adjust the scroll amount as needed
             cardContainerRef.current.scrollBy({
