@@ -1,5 +1,4 @@
 import { FaCaretUp } from "react-icons/fa";
-
 async function getBitcoinData() {
   const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin';
   const options = {
@@ -10,7 +9,7 @@ async function getBitcoinData() {
     },
   };
 
-  const res = await fetch(url, options, { next: { revalidate: 60 } }); // Revalidate every minute
+  const res = await fetch(url, options); // Removed the third argument
   if (!res.ok) throw new Error('Failed to fetch data');
   const data = await res.json();
   return data[0];
