@@ -9,7 +9,7 @@ import { FaAnglesRight } from "react-icons/fa6";
 import "./globals.css";
 import Sentiment from '@/Components/Sentiment'
 import About from '@/Components/About'
-import Token from '@/Components/Token'
+// import Token from '@/Components/Token'
 
 const page = () => {
   return (
@@ -27,7 +27,7 @@ const page = () => {
           <Detail />
           <Sentiment/>
           <About/>
-          <Token/>
+          {/* <Token/> */}
         </div>
         <div className="w-1/4 space-y-2 fixed top-[7.5rem] right-8 h-[calc(100%-4rem)] overflow-y-auto px-4">
           <CTA />
