@@ -1,27 +1,66 @@
-'use client'
+'use client';
 
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef, useState, memo } from 'react';
+
+interface BitcoinData {
+  inr: number;
+  inr_24h_change: number;
+  usd: number;
+  usd_24h_change: number;
+}
 
 function TradingViewWidget() {
   const container = useRef<HTMLDivElement>(null);
+  const [bitcoinData, setBitcoinData] = useState<BitcoinData | null>(null);
 
+  // Fetch Bitcoin price data using the provided API
   useEffect(() => {
-    const existingScript = document.querySelector('script[src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"]');
+    const fetchBitcoinData = async () => {
+      const url =
+        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr%2Cusd&include_24hr_change=true';
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          'x-cg-demo-api-key': 'CG-ekwns8dzHHTY21EnHqgZE8t1',
+        },
+      };
+
+      try {
+        const res = await fetch(url, options);
+        if (!res.ok) {
+          throw new Error('Failed to fetch Bitcoin data');
+        }
+        const data = await res.json();
+        setBitcoinData(data.bitcoin);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchBitcoinData();
+  }, []);
+
+  // Embedding the TradingView widget
+  useEffect(() => {
+    const existingScript = document.querySelector(
+      'script[src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"]'
+    );
     if (existingScript) return;
 
-    const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-    script.type = "text/javascript";
+    const script = document.createElement('script');
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+    script.type = 'text/javascript';
     script.async = true;
     script.innerHTML = `
       {
         "autosize": true,
-        "symbol": "NASDAQ:AAPL",
+        "symbol": "BITSTAMP:BTCUSD",
         "interval": "D",
         "timezone": "Etc/UTC",
         "theme": "light",
         "style": "3",
-        "hide_top_toolbar": true,
+        "hide_top_toolbar": false,
         "save_image": false,
         "support_host": "https://www.tradingview.com"
       }`;
@@ -29,13 +68,11 @@ function TradingViewWidget() {
   }, []);
 
   return (
-    <div className="tradingview-widget-container" ref={container} style={{ height: "100%", width: "100%" }}>
-      <div className="tradingview-widget-container__widget" style={{ height: "calc(100% - 32px)", width: "100%" }}></div>
-      <div className="tradingview-widget-copyright">
-        <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-          <span className="blue-text">Track all markets on TradingView</span>
-        </a>
-      </div>
+    <div className="tradingview-widget-container" style={{ height: '108.5%', width: '100%' }}>
+      {/* Heading Section */}
+      
+      {/* TradingView Chart */}
+      <div className="tradingview-widget-container__widget" ref={container} style={{ height: 'calc(100% - 32px)', width: '100%' }}></div>
     </div>
   );
 }

@@ -26,13 +26,13 @@ export default function Navbar() {
       {/* Navigation and button on the right */}
       <div className="flex items-center space-x-6">
         {/* Navigation links */}
-        <Link href="/about" className="text-gray-600 hover:text-gray-800 transition-colors">
+        <Link href="/about" className="text-black font-medium hover:text-gray-800 transition-colors">
           Crypto Taxes
         </Link>
-        <Link href="/services" className="text-gray-600 hover:text-gray-800 transition-colors">
+        <Link href="/services" className="text-black font-medium hover:text-gray-800 transition-colors">
           Free Tools
         </Link>
-        <Link href="/contact" className="text-gray-600 hover:text-gray-800 transition-colors">
+        <Link href="/contact" className="text-black font-medium hover:text-gray-800 transition-colors">
           Resource Centre
         </Link>
 
