@@ -2,16 +2,9 @@
 
 import React, { useEffect, useRef, useState, memo } from 'react';
 
-interface BitcoinData {
-  inr: number;
-  inr_24h_change: number;
-  usd: number;
-  usd_24h_change: number;
-}
 
 function TradingViewWidget() {
   const container = useRef<HTMLDivElement>(null);
-  const [bitcoinData, setBitcoinData] = useState<BitcoinData | null>(null);
 
   // Fetch Bitcoin price data using the provided API
   useEffect(() => {
@@ -25,17 +18,6 @@ function TradingViewWidget() {
           'x-cg-demo-api-key': 'CG-ekwns8dzHHTY21EnHqgZE8t1',
         },
       };
-
-      try {
-        const res = await fetch(url, options);
-        if (!res.ok) {
-          throw new Error('Failed to fetch Bitcoin data');
-        }
-        const data = await res.json();
-        setBitcoinData(data.bitcoin);
-      } catch (error) {
-        console.error(error);
-      }
     };
 
     fetchBitcoinData();
