@@ -1,27 +1,10 @@
 'use client';
 
-import React, { useEffect, useRef, useState, memo } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 
 
 function TradingViewWidget() {
   const container = useRef<HTMLDivElement>(null);
-
-  // Fetch Bitcoin price data using the provided API
-  useEffect(() => {
-    const fetchBitcoinData = async () => {
-      const url =
-        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr%2Cusd&include_24hr_change=true';
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          'x-cg-demo-api-key': 'CG-ekwns8dzHHTY21EnHqgZE8t1',
-        },
-      };
-    };
-
-    fetchBitcoinData();
-  }, []);
 
   // Embedding the TradingView widget
   useEffect(() => {
